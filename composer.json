@@ -1,0 +1,17 @@
+{
+    "name": "lucas/debugbar-poc",
+    "autoload": {
+        "psr-4": {
+            "Lucas\\DebugbarPoc\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lucas",
+            "email": "lucasvmorales@protonmail.com"
+        }
+    ],
+    "require": {
+        "maximebf/debugbar": "^1.18"
+    }
+}
