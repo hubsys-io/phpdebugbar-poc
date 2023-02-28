@@ -9,13 +9,27 @@ use DebugBar\DataCollector\PDO\PDOCollector;
 $debugbar = new StandardDebugBar();
 $debugbarRenderer = $debugbar->getJavascriptRenderer();
 
-$pdo = new \PDO('mysql:host=tmdsv2.cyw3t2arq3fo.us-east-1.rds.amazonaws.com;dbname=egali_tm_dsv', 'admin', 'pbmTn9xGwiZ2i51VkuTWQ');
+$pdo = new \PDO('mysql:host=tmdsv2.cyw3t2arq3fo.us-east-1.rds.amazonaws.com;dbname=egali_tm_dsv', 'admin', 'bmTn9xGwiZ2i51VkuTWQ');
 $pdoCollector = new PDOCollector($pdo);
 $debugbar->addCollector($pdoCollector);
 
-$stmt = $pdo->prepare('SELECT * FROM tmbusiness');
+$stmt = $pdo->prepare('SELECT * FROM tmbusiness WHERE business_id = 1');
 $stmt->execute();
-$pdoCollector->addQuery('SELECT * FROM tmbusiness', $stmt->fetchAll());
+
+$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+$debugbar["messages"]->addMessage($result);
+$debugbar["time"]->startMeasure('render', 'Time for page render');
+
+if (isset($_GET['test'])) {
+    $debugbar["messages"]->addMessage($_GET['test']);
+}
+
+try {
+    throw new \Exception('This is a test exception');
+} catch (\Exception $e) {
+    $debugbar["exceptions"]->addException($e);
+}
 
 ?>
 
