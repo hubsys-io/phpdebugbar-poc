@@ -5,6 +5,15 @@ require 'vendor/autoload.php';
 
 use DebugBar\StandardDebugBar;
 use DebugBar\DataCollector\PDO\PDOCollector;
+use DebugBar\Bridge\MonologCollector;
+
+use Monolog\Level;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+// create a log channel
+$log = new Logger('name');
+$log->pushHandler(new StreamHandler('path/to/your.log', Level::Warning));
 
 $debugbar = new StandardDebugBar();
 $debugbarRenderer = $debugbar->getJavascriptRenderer();
@@ -31,6 +40,13 @@ try {
     $debugbar["exceptions"]->addException($e);
 }
 
+$log->warning('Foo');
+$log->error('Bar');
+$log->info('Baz');
+$log->debug('Qux');
+
+$monologCollector = new MonologCollector($log);
+$debugbar->addCollector($monologCollector);
 ?>
 
 <!DOCTYPE html>

@@ -12,6 +12,7 @@
         }
     ],
     "require": {
-        "maximebf/debugbar": "^1.18"
+        "maximebf/debugbar": "^1.18",
+        "monolog/monolog": "^3.3"
     }
 }
