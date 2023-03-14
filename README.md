@@ -1,5 +1,7 @@
 # POC da biblioteca PHP DebugBar
 
+![phpDebugBar](screenshot.png)
+
 ## O que é uma POC?
 Uma POC, ou prova de conceito, se refere a um protótipo que tem como objetivo colocar em prática algo que está somente no campo da teoria. Ou seja, é um protótipo que tem como objetivo demonstrar a viabilidade de um projeto.
 
